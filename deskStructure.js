@@ -1,4 +1,6 @@
-﻿export default (S) =>
+﻿import S from "sanity/desk";
+
+const deskStructure = () =>
   S.list()
     .title('Контент')
     .items([
@@ -6,7 +8,6 @@
         .title('Статті')
         .schemaType('article')
         .child(S.documentTypeList('article').title('Статті')),
-
       S.listItem()
         .title('Розклад')
         .child(
@@ -32,4 +33,6 @@
                 ),
             ])
         ),
-    ])
+    ]);
+
+export default deskStructure;
