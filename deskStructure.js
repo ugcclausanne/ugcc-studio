@@ -4,8 +4,36 @@ export default (S) =>
     .items([
       S.listItem()
         .title('Статті')
-        .schemaType('article')
-        .child(S.documentTypeList('article').title('Статті')),
+        .child(
+          S.list()
+            .title('Статті')
+            .items([
+              S.listItem()
+                .title('Усі')
+                .child(S.documentTypeList('article').title('Усі статті')),
+              S.listItem()
+                .title('Новини')
+                .child(
+                  S.documentTypeList('article')
+                    .title('Новини')
+                    .filter('_type == "article" && category == "news"')
+                ),
+              S.listItem()
+                .title('Духовність')
+                .child(
+                  S.documentTypeList('article')
+                    .title('Духовність')
+                    .filter('_type == "article" && category == "spiritual"')
+                ),
+              S.listItem()
+                .title('Спільнота')
+                .child(
+                  S.documentTypeList('article')
+                    .title('Спільнота')
+                    .filter('_type == "article" && category == "community"')
+                ),
+            ])
+        ),
 
       S.listItem()
         .title('Розклад')
