@@ -5,8 +5,8 @@ export default {
   type: 'document',
   fields: [
     {name: 'timestamp', title: 'Timestamp', type: 'datetime', hidden: true, initialValue: () => new Date().toISOString()},
-    {name: 'date', title: 'Дата', type: 'date', description: 'Дата події (визначає відбір та сортування на сайті).', validation: r => r.required(), initialValue: '2025-10-23'},
-    {name: 'time', title: 'Час', type: 'string', components: {input: TimeInput}, description: 'Початок події у форматі HH:mm. Працює з пікером.', validation: r => r.required(), initialValue: '20:03'},
+    {name: 'date', title: 'Дата', type: 'date', description: 'Дата події (визначає відбір та сортування на сайті).', validation: r => r.required(), initialValue: '$today'},
+    {name: 'time', title: 'Час', type: 'string', components: {input: TimeInput}, description: 'Початок події у форматі HH:mm. Працює з пікером.', validation: r => r.required(), initialValue: '$time'},
     {
       name: 'category',
       title: 'Категорія',
@@ -43,7 +43,7 @@ export default {
   preview: {
     select: {title: 'title', date: 'date', time: 'time', cat: 'category'},
     prepare: ({title, date, time, cat}) => ({
-      title: ${cat || ''}  .trim(),
+      title: `${cat || ''} ${date || ''} ${time || ''}`.trim(),
       subtitle: title,
     }),
   },
