@@ -5,7 +5,7 @@ import {schemaTypes} from './schemaTypes'
 import deskStructure from './deskStructure'
 import {dashboardTool, projectInfoWidget, projectUsersWidget} from '@sanity/dashboard'
 import LatestNewsWidget from './components/LatestNewsWidget'
-import {createTheme, studioTheme} from '@sanity/ui'
+// Theme: use default (light by OS). To force light-only, we can revisit with supported API.
 
 export default defineConfig({
   name: 'default',
@@ -37,6 +37,5 @@ export default defineConfig({
     types: schemaTypes,
   },
 
-  // Force light theme for editors
-  theme: createTheme(studioTheme, {color: {dark: false}}),
+  // Theme left as default (light) to match editors' OS setting
 })
