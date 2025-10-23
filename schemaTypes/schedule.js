@@ -1,55 +1,52 @@
-import TimeInput from '../components/TimeInput'
+Ôªøimport TimeInput from '../components/TimeInput'
 export default {
   name: 'schedule',
-  title: '–ÓÁÍÎ‡‰',
+  title: '–†–æ–∑–∫–ª–∞–¥',
   type: 'document',
   fields: [
-    {name: 'timestamp', title: 'Timestamp', type: 'datetime', validation: (r) => r.required()},
-    {name: 'date', title: 'ƒ‡Ú‡', type: 'date'},
-    {name: 'time', title: '◊‡Ò', type: 'string', components: {input: TimeInput}, validation: r => r.required().regex(/^([01]\\d|2[0-3]):[0-5]\\d$/, {name: 'HH:mm'}).error('‘ÓÏ‡Ú HH:mm, Ì‡Ô. 09:30')},
+    {name: 'timestamp', title: 'Timestamp', type: 'datetime', hidden: true, initialValue: () => new Date().toISOString()},
+    {name: 'date', title: '–î–∞—Ç–∞', type: 'date', validation: r => r.required()},
+    {name: 'time', title: '–ß–∞—Å', type: 'string', components: {input: TimeInput}, validation: r => r.required()},
     {
       name: 'category',
-      title: ' ‡ÚÂ„Ó≥ˇ',
+      title: '–ö–∞—Ç–µ–≥–æ—Ä—ñ—è',
       type: 'string',
       options: {list: [
-        {title: 'Liturgy', value: 'liturgy'},
-        {title: 'Announcement', value: 'announcement'},
+        {title: '–õ—ñ—Ç—É—Ä–≥—ñ—è', value: 'liturgy'},
+        {title: '–û–≥–æ–ª–æ—à–µ–Ω–Ω—è', value: 'announcement'},
       ]},
     },
-    {name: 'title', title: '«‡„ÓÎÓ‚ÓÍ', type: 'string', validation: (r) => r.required()},
-    {name: 'details', title: 'ƒÂÚ‡Î≥', type: 'text'},
-    {name: 'location', title: 'ÀÓÍ‡ˆ≥ˇ', type: 'string'},
+    {name: 'title', title: '–ó–∞–≥–æ–ª–æ–≤–æ–∫', type: 'string', validation: (r) => r.required()},
+    {name: 'details', title: '–î–µ—Ç–∞–ª—ñ', type: 'text'},
+    {name: 'location', title: '–õ–æ–∫–∞—Ü—ñ—è', type: 'string'},
     {
       name: 'language',
-      title: 'ÃÓ‚‡',
+      title: '–ú–æ–≤–∞',
       type: 'string',
       options: {list: [
-        {title: 'Ukrainian', value: 'uk'},
+        {title: '–£–∫—Ä–∞—ó–Ω—Å—å–∫–∞', value: 'uk'},
         {title: 'English', value: 'en'},
-        {title: 'French', value: 'fr'},
+        {title: 'Fran√ßais', value: 'fr'},
       ]},
       validation: (r) => r.required(),
     },
-    {name: 'before_time', title: 'œÂÂ‰: ˜‡Ò', type: 'string', components: {input: TimeInput}, validation: r => r.regex(/^$|^([01]\\d|2[0-3]):[0-5]\\d$/, {name: 'HH:mm'})},
-    {name: 'before_details', title: 'œÂÂ‰: ‰ÂÚ‡Î≥', type: 'text'},
-    {name: 'after_time', title: 'œ≥ÒÎˇ: ˜‡Ò', type: 'string', components: {input: TimeInput}, validation: r => r.regex(/^$|^([01]\\d|2[0-3]):[0-5]\\d$/, {name: 'HH:mm'})},
-    {name: 'after_details', title: 'œ≥ÒÎˇ: ‰ÂÚ‡Î≥', type: 'text'},
-    {name: 'image', title: '«Ó·‡ÊÂÌÌˇ', type: 'image', options: {hotspot: true}},
-    {name: 'link', title: 'œÓÒËÎ‡ÌÌˇ', type: 'url'},
-    {name: 'auto_translated', title: '¿‚ÚÓÔÂÂÍÎ‡‰', type: 'boolean'},
+    {name: 'before_time', title: '–ü–µ—Ä–µ–¥: —á–∞—Å', type: 'string', components: {input: TimeInput}},
+    {name: 'before_details', title: '–ü–µ—Ä–µ–¥: –¥–µ—Ç–∞–ª—ñ', type: 'text'},
+    {name: 'after_time', title: '–ü—ñ—Å–ª—è: —á–∞—Å', type: 'string', components: {input: TimeInput}},
+    {name: 'after_details', title: '–ü—ñ—Å–ª—è: –¥–µ—Ç–∞–ª—ñ', type: 'text'},
+    {name: 'image', title: '–ó–æ–±—Ä–∞–∂–µ–Ω–Ω—è', type: 'image', options: {hotspot: true}},
+    {name: 'link', title: '–ü–æ—Å–∏–ª–∞–Ω–Ω—è', type: 'url'},
+    {name: 'auto_translated', title: '–ê–≤—Ç–æ–ø–µ—Ä–µ–∫–ª–∞–¥', type: 'boolean'},
   ],
   preview: {
-    select: {title: '«‡„ÓÎÓ‚ÓÍ', date: 'date', time: 'time', cat: 'category'},
+    select: {title: 'title', date: 'date', time: 'time', cat: 'category'},
     prepare: ({title, date, time, cat}) => ({
       title: `${cat || ''} ${date || ''} ${time || ''}`.trim(),
       subtitle: title,
     }),
   },
   orderings: [
-    {name: 'timestampDesc', title: 'Timestamp desc', by: [{field: 'timestamp', direction: 'desc'}]},
-    {name: 'timestampAsc', title: 'Timestamp asc', by: [{field: 'timestamp', direction: 'asc'}]},
+    {name: 'timestampDesc', title: '–ß–∞—Å (—Å–ø–∞–¥–Ω–æ)', by: [{field: 'timestamp', direction: 'desc'}]},
+    {name: 'timestampAsc', title: '–ß–∞—Å (–∑—Ä–æ—Å—Ç.)', by: [{field: 'timestamp', direction: 'asc'}]},
   ],
 }
-
-
-
