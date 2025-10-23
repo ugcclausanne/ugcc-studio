@@ -51,10 +51,11 @@ export default {
       options: {
         list: [
           {title: 'Українська', value: 'uk'},
+          {title: 'English', value: 'en'},
           {title: 'Français', value: 'fr'},
         ],
       },
-      description: 'Оберіть мову публікації (укр або фр).',
+      description: 'Оберіть мову публікації. Може відрізнятися від мови сайту.',
       validation: (r) => r.required(),
     },
     {
@@ -89,3 +90,4 @@ export default {
     {name: 'timestampAsc', title: 'Дата (зрост.)', by: [{field: 'timestamp', direction: 'asc'}]},
   ],
 }
+
