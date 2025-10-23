@@ -1,17 +1,16 @@
-export default {
+п»їexport default {
   name: 'article',
-  title: 'Стаття',
+  title: 'Article',
   type: 'document',
   fields: [
-    {name: 'title', title: 'Заголовок', type: 'string', validation: (r) => r.required()},
-    {name: 'slug', title: 'Слаг', type: 'slug', options: {source: 'title', maxLength: 96}},
-    {name: 'timestamp', title: 'Час публікації', type: 'datetime', hidden: true, initialValue: () => new Date().toISOString()}
-    {name: 'email', title: 'Email (лог)'
-, type: 'string'},
-    {name: 'excerpt', title: 'Короткий опис', type: 'text'},
+    {name: 'title', title: 'Title', type: 'string', validation: (r) => r.required()},
+    {name: 'slug', title: 'Slug', type: 'slug', options: {source: 'title', maxLength: 96}},
+    {name: 'timestamp', title: 'Timestamp', type: 'datetime', hidden: true, initialValue: () => new Date().toISOString()},
+    {name: 'email', title: 'Email (log)', type: 'string', hidden: true},
+    {name: 'excerpt', title: 'Excerpt', type: 'text'},
     {
       name: 'category',
-      title: 'Категорія',
+      title: 'Category',
       type: 'string',
       options: {list: [
         {title: 'News', value: 'news'},
@@ -22,7 +21,7 @@ export default {
     },
     {
       name: 'language',
-      title: 'Мова',
+      title: 'Language',
       type: 'string',
       options: {list: [
         {title: 'Ukrainian', value: 'uk'},
@@ -31,21 +30,21 @@ export default {
       ]},
       validation: (r) => r.required(),
     },
-    {name: 'image', title: 'Зображення', type: 'image', options: {hotspot: true}},
+    {name: 'image', title: 'Main Image', type: 'image', options: {hotspot: true}},
     {
       name: 'content',
-      title: 'Контент',
+      title: 'Content',
       type: 'array',
       of: [
         {type: 'block'},
         {type: 'image', options: {hotspot: true}},
       ],
     },
-    {name: 'author', title: 'Автор', type: 'string'},
-    {name: 'auto_translated', title: 'Автопереклад', type: 'boolean'},
+    {name: 'author', title: 'Author', type: 'string'},
+    {name: 'auto_translated', title: 'Auto Translated', type: 'boolean'},
   ],
   preview: {
-    select: {title: 'Заголовок', ts: 'timestamp', lang: 'language', cat: 'category'},
+    select: {title: 'title', ts: 'timestamp', lang: 'language', cat: 'category'},
     prepare: ({title, ts, lang, cat}) => ({
       title,
       subtitle: `${cat || ''} вЂў ${lang || ''} вЂў ${ts || ''}`,
@@ -56,6 +55,3 @@ export default {
     {name: 'timestampAsc', title: 'Timestamp asc', by: [{field: 'timestamp', direction: 'asc'}]},
   ],
 }
-
-
-
