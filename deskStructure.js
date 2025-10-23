@@ -1,3 +1,5 @@
+import PreviewPane from './components/PreviewPane'
+
 export default (S) =>
   S.list()
     .title('Зміст')
@@ -10,13 +12,34 @@ export default (S) =>
             .items([
               S.listItem()
                 .title('Усі')
-                .child(S.documentTypeList('article').title('Усі статті')),
+                .child(
+                  S.documentTypeList('article')
+                    .title('Усі статті')
+                    .child((documentId) =>
+                      S.document()
+                        .documentId(documentId)
+                        .schemaType('article')
+                        .views([
+                          S.view.form(),
+                          S.view.component(PreviewPane).title("Прев'ю"),
+                        ])
+                    )
+                ),
               S.listItem()
                 .title('Новини')
                 .child(
                   S.documentTypeList('article')
                     .title('Новини')
                     .filter('_type == "article" && category == "news"')
+                    .child((documentId) =>
+                      S.document()
+                        .documentId(documentId)
+                        .schemaType('article')
+                        .views([
+                          S.view.form(),
+                          S.view.component(PreviewPane).title("Прев'ю"),
+                        ])
+                    )
                 ),
               S.listItem()
                 .title('Духовність')
@@ -24,6 +47,15 @@ export default (S) =>
                   S.documentTypeList('article')
                     .title('Духовність')
                     .filter('_type == "article" && category == "spiritual"')
+                    .child((documentId) =>
+                      S.document()
+                        .documentId(documentId)
+                        .schemaType('article')
+                        .views([
+                          S.view.form(),
+                          S.view.component(PreviewPane).title("Прев'ю"),
+                        ])
+                    )
                 ),
               S.listItem()
                 .title('Спільнота')
@@ -31,6 +63,15 @@ export default (S) =>
                   S.documentTypeList('article')
                     .title('Спільнота')
                     .filter('_type == "article" && category == "community"')
+                    .child((documentId) =>
+                      S.document()
+                        .documentId(documentId)
+                        .schemaType('article')
+                        .views([
+                          S.view.form(),
+                          S.view.component(PreviewPane).title("Прев'ю"),
+                        ])
+                    )
                 ),
             ])
         ),
@@ -43,13 +84,34 @@ export default (S) =>
             .items([
               S.listItem()
                 .title('Усі')
-                .child(S.documentTypeList('schedule').title('Усі події')),
+                .child(
+                  S.documentTypeList('schedule')
+                    .title('Усі події')
+                    .child((documentId) =>
+                      S.document()
+                        .documentId(documentId)
+                        .schemaType('schedule')
+                        .views([
+                          S.view.form(),
+                          S.view.component(PreviewPane).title("Прев'ю"),
+                        ])
+                    )
+                ),
               S.listItem()
                 .title('Літургії')
                 .child(
                   S.documentTypeList('schedule')
                     .title('Літургії')
                     .filter('_type == "schedule" && category == "liturgy"')
+                    .child((documentId) =>
+                      S.document()
+                        .documentId(documentId)
+                        .schemaType('schedule')
+                        .views([
+                          S.view.form(),
+                          S.view.component(PreviewPane).title("Прев'ю"),
+                        ])
+                    )
                 ),
               S.listItem()
                 .title('Оголошення')
@@ -57,8 +119,16 @@ export default (S) =>
                   S.documentTypeList('schedule')
                     .title('Оголошення')
                     .filter('_type == "schedule" && category == "announcement"')
+                    .child((documentId) =>
+                      S.document()
+                        .documentId(documentId)
+                        .schemaType('schedule')
+                        .views([
+                          S.view.form(),
+                          S.view.component(PreviewPane).title("Прев'ю"),
+                        ])
+                    )
                 ),
             ])
         ),
     ]);
-
