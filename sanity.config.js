@@ -1,6 +1,5 @@
 import {defineConfig} from 'sanity'
 import {structureTool} from 'sanity/structure'
-import {visionTool} from '@sanity/vision'
 import {schemaTypes} from './schemaTypes'
 import deskStructure from './deskStructure'
 import {dashboardTool, projectInfoWidget, projectUsersWidget} from '@sanity/dashboard'
@@ -33,11 +32,18 @@ export default defineConfig({
         {name: 'latest-news', component: LatestNewsWidget, layout: {width: 'medium'}},
       ],
     }),
-    visionTool(),
   ],
 
   schema: {
     types: schemaTypes,
   },
-})
 
+  // Keep only essential tools for editors
+  tools: (prev) => prev.filter((tool) => ['desk', 'dashboard'].includes(tool.name)),
+
+  // Simplify document actions for non‑technical editors
+  document: {
+    actions: (prev, context) =>
+      prev.filter(({action}) => ['publish', 'unpublish', 'discardChanges', 'delete'].includes(action)),
+  },
+})
