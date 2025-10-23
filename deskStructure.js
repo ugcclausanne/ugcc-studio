@@ -1,13 +1,7 @@
-import S from 'sanity/desk'
-
-const deskStructure = (S) =>
+п»їexport default (S) =>
   S.list()
-    .title('Контент')
+    .title('РљРѕРЅС‚РµРЅС‚')
     .items([
-      S.listItem().title('Статті').schemaType('article').child(S.documentTypeList('article').title('Статті')),
-      S.listItem().title('Розклад').schemaType('schedule').child(S.documentTypeList('schedule').title('Розклад')),
+      S.listItem().title('РЎС‚Р°С‚С‚С–').schemaType('article').child(S.documentTypeList('article').title('РЎС‚Р°С‚С‚С–')),
+      S.listItem().title('Р РѕР·РєР»Р°Рґ').schemaType('schedule').child(S.documentTypeList('schedule').title('Р РѕР·РєР»Р°Рґ')),
     ])
-
-
-export default deskStructure
-
