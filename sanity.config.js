@@ -3,7 +3,8 @@ import {structureTool} from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
 import {schemaTypes} from './schemaTypes'
 import deskStructure from './deskStructure'
-import {dashboardTool, projectInfoWidget, projectUsersWidget, documentListWidget} from '@sanity/dashboard'
+import {dashboardTool, projectInfoWidget, projectUsersWidget} from '@sanity/dashboard'
+import LatestNewsWidget from './components/LatestNewsWidget'
 import {createTheme, studioTheme} from '@sanity/ui'
 
 export default defineConfig({
@@ -26,11 +27,7 @@ export default defineConfig({
           ],
         }),
         projectUsersWidget(),
-        documentListWidget({
-          title: 'Останні новини',
-          query: '*[_type == "article" && category == "news"] | order(_createdAt desc)[0...8]',
-          layout: {width: 'medium'},
-        }),
+        {name: 'latest-news', component: LatestNewsWidget, layout: {width: 'medium'}},
       ],
     }),
     visionTool(),
@@ -43,4 +40,3 @@ export default defineConfig({
   // Force light theme for editors
   theme: createTheme(studioTheme, {color: {dark: false}}),
 })
-
