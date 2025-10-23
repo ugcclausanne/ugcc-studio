@@ -1,12 +1,12 @@
-﻿import TimeInput from '../components/TimeInput'
+import TimeInput from '../components/TimeInput'
 export default {
   name: 'schedule',
   title: 'Розклад',
   type: 'document',
   fields: [
     {name: 'timestamp', title: 'Timestamp', type: 'datetime', hidden: true, initialValue: () => new Date().toISOString()},
-    {name: 'date', title: 'Дата', type: 'date', description: 'Дата події (визначає відбір та сортування на сайті).', validation: r => r.required(), initialValue: '$today'},
-    {name: 'time', title: 'Час', type: 'string', components: {input: TimeInput}, description: 'Початок події у форматі HH:mm. Працює з пікером.', validation: r => r.required(), initialValue: '$time'},
+    {name: 'date', title: 'Дата', type: 'date', description: 'Дата події (виберіть у календарі або введіть вручну).', validation: (r) => r.required(), initialValue: '$today'},
+    {name: 'time', title: 'Час', type: 'string', components: {input: TimeInput}, description: 'Час події у форматі HH:mm. Необов’язково.', validation: (r) => r.required(), initialValue: '$time'},
     {
       name: 'category',
       title: 'Категорія',
@@ -15,11 +15,11 @@ export default {
         {title: 'Літургія', value: 'liturgy'},
         {title: 'Оголошення', value: 'announcement'},
       ]},
-      description: 'Тип події для відображення на сайті.'
+      description: 'Категорія події для відображення на сайті.',
     },
-    {name: 'title', title: 'Заголовок', type: 'string', validation: r => r.required(), description: 'Коротка назва події.'},
-    {name: 'details', title: 'Деталі', type: 'text', description: 'Декілька речень (необов’язково).'},
-    {name: 'location', title: 'Локація', type: 'string', description: 'Наприклад: Храм Святого Миколая.'},
+    {name: 'title', title: 'Заголовок', type: 'string', validation: (r) => r.required(), description: 'Коротка назва події.'},
+    {name: 'details', title: 'Деталі', type: 'text', description: 'Додаткова інформація (за потреби).'},
+    {name: 'location', title: 'Місце', type: 'string', description: 'Наприклад: адреса або назва локації.'},
     {
       name: 'language',
       title: 'Мова',
@@ -29,16 +29,16 @@ export default {
         {title: 'English', value: 'en'},
         {title: 'Français', value: 'fr'},
       ]},
-      description: 'Мова оригіналу. Інші мови додаються під час синку.',
-      validation: r => r.required(),
+      description: 'Мова публікації. Може відрізнятися від мови сайту.',
+      validation: (r) => r.required(),
     },
-    {name: 'before_time', title: 'Перед: час', type: 'string', components: {input: TimeInput}, description: 'Час перед подією (необов’язково).'},
+    {name: 'before_time', title: 'Перед: час', type: 'string', components: {input: TimeInput}, description: 'Час підготовки (за потреби).'},
     {name: 'before_details', title: 'Перед: деталі', type: 'text'},
-    {name: 'after_time', title: 'Після: час', type: 'string', components: {input: TimeInput}, description: 'Час після події (необов’язково).'},
+    {name: 'after_time', title: 'Після: час', type: 'string', components: {input: TimeInput}, description: 'Час після події (за потреби).'},
     {name: 'after_details', title: 'Після: деталі', type: 'text'},
-    {name: 'image', title: 'Зображення', type: 'image', options: {hotspot: true}, description: 'Необов’язково. Якщо нема — сайт підставить випадкове зображення.'},
-    {name: 'link', title: 'Посилання', type: 'url', description: 'Опційно: детальніше на окремій сторінці/події.'},
-    {name: 'auto_translated', title: 'Автопереклад', type: 'boolean', readOnly: true},
+    {name: 'image', title: 'Зображення', type: 'image', options: {hotspot: true}, description: 'Необов’язково. Якщо не потрібно — залиште порожнім.'},
+    {name: 'link', title: 'Посилання', type: 'url', description: 'Наприклад: сторінка Facebook або Google Maps.'},
+    {name: 'auto_translated', title: 'Автоматично перекладено', type: 'boolean', readOnly: true},
   ],
   preview: {
     select: {title: 'title', date: 'date', time: 'time', cat: 'category'},
@@ -48,7 +48,8 @@ export default {
     }),
   },
   orderings: [
-    {name: 'timestampDesc', title: 'Час (спадно)', by: [{field: 'timestamp', direction: 'desc'}]},
-    {name: 'timestampAsc', title: 'Час (зрост.)', by: [{field: 'timestamp', direction: 'asc'}]},
+    {name: 'timestampDesc', title: 'Дата (спад.)', by: [{field: 'timestamp', direction: 'desc'}]},
+    {name: 'timestampAsc', title: 'Дата (зрост.)', by: [{field: 'timestamp', direction: 'asc'}]},
   ],
 }
+

@@ -1,6 +1,6 @@
-﻿export default (S) =>
+export default (S) =>
   S.list()
-    .title('Контент')
+    .title('Зміст')
     .items([
       S.listItem()
         .title('Статті')
@@ -14,8 +14,8 @@
             .title('Розклад')
             .items([
               S.listItem()
-                .title('Усе')
-                .child(S.documentTypeList('schedule').title('Весь розклад')),
+                .title('Усі')
+                .child(S.documentTypeList('schedule').title('Усі події')),
               S.listItem()
                 .title('Літургії')
                 .child(
@@ -33,3 +33,4 @@
             ])
         ),
     ]);
+
