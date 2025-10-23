@@ -1,10 +1,10 @@
-import React, {useMemo} from 'react'
+﻿import React, {useMemo} from 'react'
 import {Box, Text} from '@sanity/ui'
 
 export default function PreviewPane(props) {
   const {documentId, schemaType} = props
 
-  const baseUrl = import.meta.env.SANITY_STUDIO_PREVIEW_URL || ''
+  const baseUrl = (globalThis && globalThis.SANITY_STUDIO_PREVIEW_URL) || 'https://ugcclausanne.github.io/ugcc-site/preview/'
   const url = useMemo(() => {
     if (!baseUrl) return ''
     const u = new URL(baseUrl)
@@ -17,8 +17,8 @@ export default function PreviewPane(props) {
     return (
       <Box padding={4}>
         <Text>
-          Не задано адреси превʼю. Додайте змінну середовища SANITY_STUDIO_PREVIEW_URL
-          (наприклад, https://ugcc-site.local/preview) і перезапустіть Studio.
+          РќРµ Р·Р°РґР°РЅРѕ Р°РґСЂРµСЃРё РїСЂРµРІКјСЋ. Р”РѕРґР°Р№С‚Рµ Р·РјС–РЅРЅСѓ СЃРµСЂРµРґРѕРІРёС‰Р° SANITY_STUDIO_PREVIEW_URL
+          (РЅР°РїСЂРёРєР»Р°Рґ, https://ugcc-site.local/preview) С– РїРµСЂРµР·Р°РїСѓСЃС‚С–С‚СЊ Studio.
         </Text>
       </Box>
     )
@@ -27,11 +27,12 @@ export default function PreviewPane(props) {
   return (
     <Box style={{height: '100%', width: '100%'}}>      
       <iframe
-        title="Превʼю"
+        title="РџСЂРµРІКјСЋ"
         src={url}
         style={{border: 0, width: '100%', height: '100%'}}
       />
     </Box>
   )
 }
+
 
