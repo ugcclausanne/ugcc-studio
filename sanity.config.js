@@ -5,7 +5,8 @@ import {schemaTypes} from './schemaTypes'
 import deskStructure from './deskStructure'
 import {dashboardTool, projectInfoWidget, projectUsersWidget} from '@sanity/dashboard'
 import LatestNewsWidget from './components/LatestNewsWidget'
-// Theme: use default (light by OS). To force light-only, we can revisit with supported API.
+import QuickActionsWidget from './components/QuickActionsWidget'
+import CountsWidget from './components/CountsWidget'
 
 export default defineConfig({
   name: 'default',
@@ -20,6 +21,8 @@ export default defineConfig({
     }),
     dashboardTool({
       widgets: [
+        {name: 'quick-actions', component: QuickActionsWidget, layout: {width: 'full'}},
+        {name: 'counts', component: CountsWidget, layout: {width: 'full'}},
         projectInfoWidget({
           data: [
             {title: 'Сайт', value: 'https://ugcclausanne.github.io/ugcc-site/'},
@@ -36,6 +39,5 @@ export default defineConfig({
   schema: {
     types: schemaTypes,
   },
-
-  // Theme left as default (light) to match editors' OS setting
 })
+
