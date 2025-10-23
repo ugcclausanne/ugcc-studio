@@ -1,26 +1,27 @@
+import TimeInput from '../components/TimeInput'
 export default {
   name: 'schedule',
-  title: 'Schedule Item',
+  title: 'Розклад',
   type: 'document',
   fields: [
     {name: 'timestamp', title: 'Timestamp', type: 'datetime', validation: (r) => r.required()},
-    {name: 'date', title: 'Date', type: 'date'},
-    {name: 'time', title: 'Time', type: 'string'},
+    {name: 'date', title: 'Дата', type: 'date'},
+    {name: 'time', title: 'Час', type: 'string', components: {input: TimeInput}, validation: r => r.required().regex(/^([01]\\d|2[0-3]):[0-5]\\d$/, {name: 'HH:mm'}).error('Формат HH:mm, напр. 09:30')},
     {
       name: 'category',
-      title: 'Category',
+      title: 'Категорія',
       type: 'string',
       options: {list: [
         {title: 'Liturgy', value: 'liturgy'},
         {title: 'Announcement', value: 'announcement'},
       ]},
     },
-    {name: 'title', title: 'Title', type: 'string', validation: (r) => r.required()},
-    {name: 'details', title: 'Details', type: 'text'},
-    {name: 'location', title: 'Location', type: 'string'},
+    {name: 'title', title: 'Заголовок', type: 'string', validation: (r) => r.required()},
+    {name: 'details', title: 'Деталі', type: 'text'},
+    {name: 'location', title: 'Локація', type: 'string'},
     {
       name: 'language',
-      title: 'Language',
+      title: 'Мова',
       type: 'string',
       options: {list: [
         {title: 'Ukrainian', value: 'uk'},
@@ -29,16 +30,16 @@ export default {
       ]},
       validation: (r) => r.required(),
     },
-    {name: 'before_time', title: 'Before: Time', type: 'string'},
-    {name: 'before_details', title: 'Before: Details', type: 'text'},
-    {name: 'after_time', title: 'After: Time', type: 'string'},
-    {name: 'after_details', title: 'After: Details', type: 'text'},
-    {name: 'image', title: 'Image', type: 'image', options: {hotspot: true}},
-    {name: 'link', title: 'Link', type: 'url'},
-    {name: 'auto_translated', title: 'Auto Translated', type: 'boolean'},
+    {name: 'before_time', title: 'Перед: час', type: 'string', components: {input: TimeInput}, validation: r => r.regex(/^$|^([01]\\d|2[0-3]):[0-5]\\d$/, {name: 'HH:mm'})},
+    {name: 'before_details', title: 'Перед: деталі', type: 'text'},
+    {name: 'after_time', title: 'Після: час', type: 'string', components: {input: TimeInput}, validation: r => r.regex(/^$|^([01]\\d|2[0-3]):[0-5]\\d$/, {name: 'HH:mm'})},
+    {name: 'after_details', title: 'Після: деталі', type: 'text'},
+    {name: 'image', title: 'Зображення', type: 'image', options: {hotspot: true}},
+    {name: 'link', title: 'Посилання', type: 'url'},
+    {name: 'auto_translated', title: 'Автопереклад', type: 'boolean'},
   ],
   preview: {
-    select: {title: 'title', date: 'date', time: 'time', cat: 'category'},
+    select: {title: 'Заголовок', date: 'date', time: 'time', cat: 'category'},
     prepare: ({title, date, time, cat}) => ({
       title: `${cat || ''} ${date || ''} ${time || ''}`.trim(),
       subtitle: title,
@@ -49,4 +50,6 @@ export default {
     {name: 'timestampAsc', title: 'Timestamp asc', by: [{field: 'timestamp', direction: 'asc'}]},
   ],
 }
+
+
 

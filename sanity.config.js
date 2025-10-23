@@ -10,9 +10,10 @@ export default defineConfig({
   projectId: 'y4j9iov2',
   dataset: 'production',
 
-  plugins: [structureTool(), visionTool()],
+  plugins: [structureTool({ structure: () => import('./deskStructure').then(m => m.default()) }), visionTool()],
 
   schema: {
     types: schemaTypes,
   },
 })
+
