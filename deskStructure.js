@@ -1,11 +1,21 @@
 import PreviewPane from './components/PreviewPane'
+import HelpPane from './components/HelpPane'
+import {DocumentIcon, CalendarIcon, InfoOutlineIcon} from '@sanity/icons'
 
 export default (S) =>
   S.list()
     .title('Зміст')
     .items([
       S.listItem()
+        .title('Підказки')
+        .icon(InfoOutlineIcon)
+        .child(S.component(HelpPane).title('Підказки')),
+
+      S.divider(),
+
+      S.listItem()
         .title('Статті')
+        .icon(DocumentIcon)
         .child(
           S.list()
             .title('Статті')
@@ -21,7 +31,7 @@ export default (S) =>
                         .schemaType('article')
                         .views([
                           S.view.form(),
-                          S.view.component(PreviewPane).title("Прев'ю"),
+                          S.view.component(PreviewPane).title("Превʼю"),
                         ])
                     )
                 ),
@@ -37,7 +47,7 @@ export default (S) =>
                         .schemaType('article')
                         .views([
                           S.view.form(),
-                          S.view.component(PreviewPane).title("Прев'ю"),
+                          S.view.component(PreviewPane).title("Превʼю"),
                         ])
                     )
                 ),
@@ -53,7 +63,7 @@ export default (S) =>
                         .schemaType('article')
                         .views([
                           S.view.form(),
-                          S.view.component(PreviewPane).title("Прев'ю"),
+                          S.view.component(PreviewPane).title("Превʼю"),
                         ])
                     )
                 ),
@@ -69,7 +79,7 @@ export default (S) =>
                         .schemaType('article')
                         .views([
                           S.view.form(),
-                          S.view.component(PreviewPane).title("Прев'ю"),
+                          S.view.component(PreviewPane).title("Превʼю"),
                         ])
                     )
                 ),
@@ -78,6 +88,7 @@ export default (S) =>
 
       S.listItem()
         .title('Розклад')
+        .icon(CalendarIcon)
         .child(
           S.list()
             .title('Розклад')
@@ -93,7 +104,7 @@ export default (S) =>
                         .schemaType('schedule')
                         .views([
                           S.view.form(),
-                          S.view.component(PreviewPane).title("Прев'ю"),
+                          S.view.component(PreviewPane).title("Превʼю"),
                         ])
                     )
                 ),
@@ -109,7 +120,7 @@ export default (S) =>
                         .schemaType('schedule')
                         .views([
                           S.view.form(),
-                          S.view.component(PreviewPane).title("Прев'ю"),
+                          S.view.component(PreviewPane).title("Превʼю"),
                         ])
                     )
                 ),
@@ -125,10 +136,11 @@ export default (S) =>
                         .schemaType('schedule')
                         .views([
                           S.view.form(),
-                          S.view.component(PreviewPane).title("Прев'ю"),
+                          S.view.component(PreviewPane).title("Превʼю"),
                         ])
                     )
                 ),
             ])
         ),
     ]);
+
