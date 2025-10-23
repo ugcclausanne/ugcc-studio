@@ -26,10 +26,9 @@ export default {
       type: 'string',
       options: {list: [
         {title: 'Українська', value: 'uk'},
-        {title: 'English', value: 'en'},
         {title: 'Français', value: 'fr'},
       ]},
-      description: 'Мова публікації. Може відрізнятися від мови сайту.',
+      description: 'Мова публікації (укр або фр).',
       validation: (r) => r.required(),
     },
     {name: 'before_time', title: 'Перед: час', type: 'string', components: {input: TimeInput}, description: 'Час підготовки (за потреби).'},
@@ -52,4 +51,3 @@ export default {
     {name: 'timestampAsc', title: 'Дата (зрост.)', by: [{field: 'timestamp', direction: 'asc'}]},
   ],
 }
-
