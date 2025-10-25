@@ -19,25 +19,26 @@ export default function QuickActionsWidget() {
       <Stack space={4}>
         <Heading size={1}>Швидкі дії</Heading>
         <Grid columns={[1, 2, 3]} gap={3}>
-          <IntentLink href="intent/create/type=article">
+          <IntentLink href="?intent=create&type=article">
             <Button mode="contained" tone="primary" text="Нова стаття" style={{width: '100%'}} />
           </IntentLink>
-          <IntentLink href="intent/create/type=schedule">
+          <IntentLink href="?intent=create&type=schedule">
             <Button mode="contained" tone="primary" text="Нова подія" style={{width: '100%'}} />
           </IntentLink>
 
-          <IntentLink href="?tool=desk">
+          <IntentLink href="?tool=desk&schemaType=article">
             <Button text="Всі статті" style={{width: '100%'}} />
           </IntentLink>
-          <IntentLink href="?tool=desk">
+          <IntentLink href="?tool=desk&schemaType=schedule">
             <Button text="Весь розклад" style={{width: '100%'}} />
           </IntentLink>
           <Box />
         </Grid>
         <Text size={1} muted>
-          Підказка: можна відкрити “Структура” зліва, щоб швидко перейти у потрібний розділ.
+          Підказка: відкрий “Структура” зліва, щоб швидко перейти у потрібний розділ.
         </Text>
       </Stack>
     </Card>
   )
 }
+
