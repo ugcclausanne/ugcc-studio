@@ -7,6 +7,7 @@ import {dashboardTool} from '@sanity/dashboard'
 import LatestNewsWidget from './components/LatestNewsWidget'
 import QuickActionsWidget from './components/QuickActionsWidget'
 import CountsWidget from './components/CountsWidget'
+import DashboardCategories from './components/DashboardCategories'
 import StudioHead from './components/StudioHead'
 import SiteLikeNavbar from './components/SiteLikeNavbar'
 
@@ -21,6 +22,7 @@ export default defineConfig({
     structureTool({structure: deskStructure}),
     dashboardTool({
       widgets: [
+        {name: 'categories', component: DashboardCategories, layout: {width: 'full'}},
         {name: 'quick-actions', component: QuickActionsWidget, layout: {width: 'full'}},
         {name: 'counts', component: CountsWidget, layout: {width: 'full'}},
         {name: 'latest-news', component: LatestNewsWidget, layout: {width: 'medium'}},
@@ -30,6 +32,17 @@ export default defineConfig({
   ],
 
   schema: {types: schemaTypes},
+  schema: {
+    types: schemaTypes,
+    templates: (prev) => [
+      ...prev,
+      {id: 'article-news', title: 'Нова стаття — Новини', schemaType: 'article', value: {category: 'news'}},
+      {id: 'article-spiritual', title: 'Нова стаття — Духовність', schemaType: 'article', value: {category: 'spiritual'}},
+      {id: 'article-community', title: 'Нова стаття — Спільнота', schemaType: 'article', value: {category: 'community'}},
+      {id: 'schedule-liturgy', title: 'Нова подія — Літургія', schemaType: 'schedule', value: {category: 'liturgy'}},
+      {id: 'schedule-announcement', title: 'Нова подія — Оголошення', schemaType: 'schedule', value: {category: 'announcement'}},
+    ],
+  },
 
   studio: {
     components: {
