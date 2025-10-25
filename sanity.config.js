@@ -8,6 +8,7 @@ import LatestNewsWidget from './components/LatestNewsWidget'
 import QuickActionsWidget from './components/QuickActionsWidget'
 import CountsWidget from './components/CountsWidget'
 import StudioHead from './components/StudioHead'
+import SiteLikeNavbar from './components/SiteLikeNavbar'
 
 export default defineConfig({
   name: 'default',
@@ -33,6 +34,7 @@ export default defineConfig({
   studio: {
     components: {
       head: StudioHead,
+      navbar: SiteLikeNavbar,
     },
   },
 
