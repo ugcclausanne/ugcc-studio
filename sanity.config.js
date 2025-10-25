@@ -2,7 +2,7 @@ import {defineConfig} from 'sanity'
 import {structureTool} from 'sanity/structure'
 import {schemaTypes} from './schemaTypes'
 import deskStructure from './deskStructure'
-import {dashboardTool, projectInfoWidget, projectUsersWidget} from '@sanity/dashboard'
+import {dashboardTool} from '@sanity/dashboard'
 import LatestNewsWidget from './components/LatestNewsWidget'
 import QuickActionsWidget from './components/QuickActionsWidget'
 import CountsWidget from './components/CountsWidget'
@@ -22,13 +22,6 @@ export default defineConfig({
       widgets: [
         {name: 'quick-actions', component: QuickActionsWidget, layout: {width: 'full'}},
         {name: 'counts', component: CountsWidget, layout: {width: 'full'}},
-        projectInfoWidget({
-          data: [
-            {title: 'Сайт', value: 'https://ugcclausanne.github.io/ugcc-site/'},
-            {title: 'GitHub', value: 'https://github.com/ugcclausanne/ugcc-site'},
-          ],
-        }),
-        projectUsersWidget(),
         {name: 'latest-news', component: LatestNewsWidget, layout: {width: 'medium'}},
       ],
     }),
