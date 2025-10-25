@@ -1,0 +1,7 @@
+.site-navbar{background:var(--bg);border-bottom:1px solid var(--border);}
+.site-navbar .brand{color:var(--ink)}
+.site-navbar .navlinks a{color:var(--ink)}
+.site-navbar .navlinks a:hover{color:var(--link)}
+.site-navbar .site-primary button{background:var(--burgundy)!important;color:var(--white)!important;border-radius:6px}
+.site-navbar .site-primary button:hover{background:var(--gold)!important}
+

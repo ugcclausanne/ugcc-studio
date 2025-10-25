@@ -1,0 +1,16 @@
+:root{
+  --gold:#96692a;
+  --burgundy:#7c1839;
+  --bg:#fff;
+  --bgsoft:#f6f6f7;
+  --border:#e0e0e0;
+  --ink:#333;
+  --text-main:#222;
+  --text-soft:#555;
+  --muted:#777;
+  --white:#fff;
+  --black:#111;
+  --link:var(--burgundy);
+  --link-hover:var(--gold);
+}
+
