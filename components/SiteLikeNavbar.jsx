@@ -1,4 +1,4 @@
-import React from 'react'
+﻿import React from 'react'
 import {Box, Button, Card, Flex, Text} from '@sanity/ui'
 
 export default function SiteLikeNavbar(props) {
@@ -16,9 +16,9 @@ export default function SiteLikeNavbar(props) {
           <Text weight="semibold">UGCC Lausanne — Адмінка</Text>
         </Flex>
         <Flex align="center" style={{gap:8}} className="navlinks">
-          <NavButton href="?tool=dashboard" text="Дашборд" />
-          <NavButton href="?tool=desk&schemaType=article" text="Статті" />
-          <NavButton href="?tool=desk&schemaType=schedule" text="Розклад" />
+          <NavButton href="?tool=dashboard" text="Р”Р°С€Р±РѕСЂРґ" />
+          <NavButton href="?tool=desk&schemaType=article" text="РЎС‚Р°С‚С‚С–" />
+          <NavButton href="?tool=desk&schemaType=schedule" text="Р РѕР·РєР»Р°Рґ" />
           <a href="https://ugcclausanne.github.io/ugcc-site/" target="_blank" rel="noreferrer" style={{textDecoration:'none'}} className="site-primary">
             <Button text="На сайт" padding={3} />
           </a>
@@ -27,3 +27,4 @@ export default function SiteLikeNavbar(props) {
     </Card>
   )
 }
+

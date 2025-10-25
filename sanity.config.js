@@ -23,9 +23,7 @@ export default defineConfig({
     dashboardTool({
       widgets: [
         {name: 'categories', component: DashboardCategories, layout: {width: 'full'}},
-        {name: 'quick-actions', component: QuickActionsWidget, layout: {width: 'full'}},
         {name: 'counts', component: CountsWidget, layout: {width: 'full'}},
-        {name: 'latest-news', component: LatestNewsWidget, layout: {width: 'medium'}},
       ],
     }),
     visionTool(),
