@@ -67,21 +67,21 @@ export default function DashboardCategories() {
         <Grid columns={[1, 3]} gap={3}>
           <CategoryCard
             title="Новини"
-            viewHref="?tool=desk&schemaType=article&filter=_type=='article'&&category=='news'"
+            viewHref="?tool=desk"
             addHref="?intent=create&type=article&template=article-news"
             count={counts?.news}
             drafts={counts?.newsDrafts}
           />
           <CategoryCard
             title="Духовне"
-            viewHref="?tool=desk&schemaType=article&filter=_type=='article'&&category=='spiritual'"
+            viewHref="?tool=desk"
             addHref="?intent=create&type=article&template=article-spiritual"
             count={counts?.spiritual}
             drafts={counts?.spiritualDrafts}
           />
           <CategoryCard
             title="Громадське"
-            viewHref="?tool=desk&schemaType=article&filter=_type=='article'&&category=='community'"
+            viewHref="?tool=desk"
             addHref="?intent=create&type=article&template=article-community"
             count={counts?.community}
             drafts={counts?.communityDrafts}
@@ -90,14 +90,14 @@ export default function DashboardCategories() {
         <Grid columns={[1, 2]} gap={3}>
           <CategoryCard
             title="Літургії"
-            viewHref="?tool=desk&schemaType=schedule&filter=_type=='schedule'&&category=='liturgy'"
+            viewHref="?tool=desk"
             addHref="?intent=create&type=schedule&template=schedule-liturgy"
             count={counts?.liturgy}
             drafts={counts?.liturgyDrafts}
           />
           <CategoryCard
             title="Оголошення"
-            viewHref="?tool=desk&schemaType=schedule&filter=_type=='schedule'&&category=='announcement'"
+            viewHref="?tool=desk"
             addHref="?intent=create&type=schedule&template=schedule-announcement"
             count={counts?.announcement}
             drafts={counts?.announcementDrafts}
@@ -107,4 +107,3 @@ export default function DashboardCategories() {
     </Card>
   )
 }
-
