@@ -1,4 +1,4 @@
-import {defineConfig} from 'sanity'
+﻿import {defineConfig} from 'sanity'
 import {structureTool} from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
 import {schemaTypes} from './schemaTypes'
@@ -30,17 +30,15 @@ export default defineConfig({
     }),
     visionTool(),
   ],
-
-  schema: {types: schemaTypes},
   schema: {
     types: schemaTypes,
     templates: (prev) => [
       ...prev,
-      {id: 'article-news', title: 'Нова стаття — Новини', schemaType: 'article', value: {category: 'news'}},
-      {id: 'article-spiritual', title: 'Нова стаття — Духовність', schemaType: 'article', value: {category: 'spiritual'}},
-      {id: 'article-community', title: 'Нова стаття — Спільнота', schemaType: 'article', value: {category: 'community'}},
-      {id: 'schedule-liturgy', title: 'Нова подія — Літургія', schemaType: 'schedule', value: {category: 'liturgy'}},
-      {id: 'schedule-announcement', title: 'Нова подія — Оголошення', schemaType: 'schedule', value: {category: 'announcement'}},
+      {id: 'article-news', title: 'РќРѕРІР° СЃС‚Р°С‚С‚СЏ вЂ” РќРѕРІРёРЅРё', schemaType: 'article', value: {category: 'news'}},
+      {id: 'article-spiritual', title: 'РќРѕРІР° СЃС‚Р°С‚С‚СЏ вЂ” Р”СѓС…РѕРІРЅС–СЃС‚СЊ', schemaType: 'article', value: {category: 'spiritual'}},
+      {id: 'article-community', title: 'РќРѕРІР° СЃС‚Р°С‚С‚СЏ вЂ” РЎРїС–Р»СЊРЅРѕС‚Р°', schemaType: 'article', value: {category: 'community'}},
+      {id: 'schedule-liturgy', title: 'РќРѕРІР° РїРѕРґС–СЏ вЂ” Р›С–С‚СѓСЂРіС–СЏ', schemaType: 'schedule', value: {category: 'liturgy'}},
+      {id: 'schedule-announcement', title: 'РќРѕРІР° РїРѕРґС–СЏ вЂ” РћРіРѕР»РѕС€РµРЅРЅСЏ', schemaType: 'schedule', value: {category: 'announcement'}},
     ],
   },
 
@@ -68,3 +66,4 @@ export default defineConfig({
     },
   },
 })
+
