@@ -44,12 +44,11 @@ export default defineConfig({
     },
   },
 
-  // Editors: Desk + Dashboard; Admins: also Vision
+  // Admin: full default tools. Editor: only Dashboard
   tools: (prev, {currentUser}) => {
     const isAdmin = !!currentUser?.roles?.some((r) => r.name === 'administrator')
-    const allowed = ['desk', 'dashboard']
-    if (isAdmin) allowed.push('vision')
-    return prev.filter((tool) => allowed.includes(tool.name))
+    if (isAdmin) return prev
+    return prev.filter((tool) => tool.name === 'dashboard')
   },
 
   // Simplify actions only for non-admins
