@@ -1,8 +1,11 @@
 import React, {useEffect, useState} from 'react'
 import {Card, Heading, Stack, Grid, Text, Box} from '@sanity/ui'
-import {useClient} from 'sanity'
+import {useClient, useCurrentUser} from 'sanity'
 
 export default function CountsWidget() {
+  const {value: user} = useCurrentUser()
+  const isAdmin = !!user?.roles?.some((r) => r.name === 'administrator')
+  if (isAdmin) return null
   const client = useClient({apiVersion: '2024-01-01'})
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -66,4 +69,3 @@ function Stat({label, value}) {
     </Box>
   )
 }
-

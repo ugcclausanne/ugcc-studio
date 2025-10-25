@@ -1,5 +1,6 @@
 import React from 'react'
 import {Card, Grid, Button, Heading, Stack, Box, Text} from '@sanity/ui'
+import {useCurrentUser} from 'sanity'
 
 function IntentLink({href, children}) {
   return (
@@ -10,6 +11,9 @@ function IntentLink({href, children}) {
 }
 
 export default function QuickActionsWidget() {
+  const {value: user} = useCurrentUser()
+  const isAdmin = !!user?.roles?.some((r) => r.name === 'administrator')
+  if (isAdmin) return null
   return (
     <Card padding={4} radius={2} shadow={1}>
       <Stack space={4}>
@@ -37,4 +41,3 @@ export default function QuickActionsWidget() {
     </Card>
   )
 }
-

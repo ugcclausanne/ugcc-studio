@@ -1,5 +1,6 @@
 import {defineConfig} from 'sanity'
 import {structureTool} from 'sanity/structure'
+import {visionTool} from '@sanity/vision'
 import {schemaTypes} from './schemaTypes'
 import deskStructure from './deskStructure'
 import {dashboardTool} from '@sanity/dashboard'
@@ -15,9 +16,7 @@ export default defineConfig({
   dataset: 'production',
 
   plugins: [
-    structureTool({
-      structure: deskStructure,
-    }),
+    structureTool({structure: deskStructure}),
     dashboardTool({
       widgets: [
         {name: 'quick-actions', component: QuickActionsWidget, layout: {width: 'full'}},
@@ -25,18 +24,26 @@ export default defineConfig({
         {name: 'latest-news', component: LatestNewsWidget, layout: {width: 'medium'}},
       ],
     }),
+    visionTool(),
   ],
 
-  schema: {
-    types: schemaTypes,
+  schema: {types: schemaTypes},
+
+  // Editors: Desk + Dashboard; Admins: also Vision
+  tools: (prev, {currentUser}) => {
+    const isAdmin = !!currentUser?.roles?.some((r) => r.name === 'administrator')
+    const allowed = ['desk', 'dashboard']
+    if (isAdmin) allowed.push('vision')
+    return prev.filter((tool) => allowed.includes(tool.name))
   },
 
-  // Keep only essential tools for editors
-  tools: (prev) => prev.filter((tool) => ['desk', 'dashboard'].includes(tool.name)),
-
-  // Simplify document actions for non‑technical editors
+  // Simplify actions only for non-admins
   document: {
-    actions: (prev, context) =>
-      prev.filter(({action}) => ['publish', 'unpublish', 'discardChanges', 'delete'].includes(action)),
+    actions: (prev, {currentUser}) => {
+      const isAdmin = !!currentUser?.roles?.some((r) => r.name === 'administrator')
+      if (isAdmin) return prev
+      return prev.filter(({action}) => ['publish', 'unpublish', 'discardChanges', 'delete'].includes(action))
+    },
   },
 })
+

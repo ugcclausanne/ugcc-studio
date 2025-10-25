@@ -1,8 +1,11 @@
 import React, {useEffect, useState} from 'react'
 import {Box, Card, Heading, Stack, Text} from '@sanity/ui'
-import {useClient} from 'sanity'
+import {useClient, useCurrentUser} from 'sanity'
 
 export default function LatestNewsWidget() {
+  const {value: user} = useCurrentUser()
+  const isAdmin = !!user?.roles?.some((r) => r.name === 'administrator')
+  if (isAdmin) return null
   const client = useClient({apiVersion: '2024-01-01'})
   const [items, setItems] = useState([])
   const [loading, setLoading] = useState(true)
@@ -53,4 +56,3 @@ export default function LatestNewsWidget() {
     </Card>
   )
 }
-
