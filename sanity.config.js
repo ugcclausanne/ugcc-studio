@@ -4,9 +4,7 @@ import {visionTool} from '@sanity/vision'
 import {schemaTypes} from './schemaTypes'
 import deskStructure from './deskStructure'
 import {dashboardTool} from '@sanity/dashboard'
-import LatestNewsWidget from './components/LatestNewsWidget'
-import QuickActionsWidget from './components/QuickActionsWidget'
-import CountsWidget from './components/CountsWidget'
+// Minimal dashboard for editors
 import DashboardCategories from './components/DashboardCategories'
 import StudioHead from './components/StudioHead'
 import SiteLikeNavbar from './components/SiteLikeNavbar'
@@ -23,7 +21,6 @@ export default defineConfig({
     dashboardTool({
       widgets: [
         {name: 'categories', component: DashboardCategories, layout: {width: 'full'}},
-        {name: 'counts', component: CountsWidget, layout: {width: 'full'}},
       ],
     }),
     visionTool(),
