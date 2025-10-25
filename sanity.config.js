@@ -7,6 +7,7 @@ import {dashboardTool} from '@sanity/dashboard'
 import LatestNewsWidget from './components/LatestNewsWidget'
 import QuickActionsWidget from './components/QuickActionsWidget'
 import CountsWidget from './components/CountsWidget'
+import StudioHead from './components/StudioHead'
 
 export default defineConfig({
   name: 'default',
@@ -29,6 +30,12 @@ export default defineConfig({
 
   schema: {types: schemaTypes},
 
+  studio: {
+    components: {
+      head: StudioHead,
+    },
+  },
+
   // Editors: Desk + Dashboard; Admins: also Vision
   tools: (prev, {currentUser}) => {
     const isAdmin = !!currentUser?.roles?.some((r) => r.name === 'administrator')
@@ -46,4 +53,3 @@ export default defineConfig({
     },
   },
 })
-
