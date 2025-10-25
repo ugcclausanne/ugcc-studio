@@ -1,7 +1,11 @@
-﻿import React from 'react'
-import {Box, Button, Card, Flex, Text} from '@sanity/ui'
+﻿import React from "react"
+import {Button, Card, Flex, Text} from "@sanity/ui"
+import {useCurrentUser} from "sanity"
 
-export default function SiteLikeNavbar(props) {
+export default function SiteLikeNavbar() {
+  const {value: user} = useCurrentUser()
+  const isAdmin = !!user?.roles?.some((r) => r.name === 'administrator')
+
   const NavButton = ({href, text}) => (
     <a href={href} style={{textDecoration: 'none'}}>
       <Button mode="bleed" text={text} padding={3} />
@@ -16,9 +20,19 @@ export default function SiteLikeNavbar(props) {
           <Text weight="semibold">UGCC Lausanne — Адмінка</Text>
         </Flex>
         <Flex align="center" style={{gap:8}} className="navlinks">
-          <NavButton href="?tool=dashboard" text="Р”Р°С€Р±РѕСЂРґ" />
-          <NavButton href="?tool=desk&schemaType=article" text="РЎС‚Р°С‚С‚С–" />
-          <NavButton href="?tool=desk&schemaType=schedule" text="Р РѕР·РєР»Р°Рґ" />
+          {!isAdmin && (
+            <a href="?intent=create&type=article" style={{textDecoration:'none'}}>
+              <Button text="Нова стаття" padding={3} className="site-primary" />
+            </a>
+          )}
+          {!isAdmin && (
+            <a href="?intent=create&type=schedule" style={{textDecoration:'none'}}>
+              <Button text="Нова подія" padding={3} className="site-primary" />
+            </a>
+          )}
+          <NavButton href="?tool=dashboard" text="Дашборд" />
+          <NavButton href="?tool=desk&schemaType=article" text="Статті" />
+          <NavButton href="?tool=desk&schemaType=schedule" text="Розклад" />
           <a href="https://ugcclausanne.github.io/ugcc-site/" target="_blank" rel="noreferrer" style={{textDecoration:'none'}} className="site-primary">
             <Button text="На сайт" padding={3} />
           </a>
@@ -27,4 +41,3 @@ export default function SiteLikeNavbar(props) {
     </Card>
   )
 }
-
